@@ -1,13 +1,11 @@
 import React from "react";
+import Paper from "material-ui/Paper";
+import NavigationAuth from "./NavigationAuth";
+import NavigationNonAuth from "./NavigationNonAuth";
+
 import { connect } from "react-redux";
 import { toggleSidebar } from "../../../actions/utilities";
-import Paper from "material-ui/Paper";
-import Menu from "material-ui/Menu";
-import MenuItem from "material-ui/MenuItem";
-import * as routes from "../../../../constants/routes";
 import { auth } from "../../../../config/firebase";
-
-import { Link, BrowserRouter } from "react-router-dom";
 import { clearTimeStore } from "../../../actions/timeActions";
 
 class SideBar extends React.Component {
@@ -59,6 +57,7 @@ class SideBar extends React.Component {
           {this.props.authUser ? (
             <NavigationAuth
               logout={this.logout}
+              email={this.props.authUser.email}
               onItemClick={this.openSideBar}
             />
           ) : (
@@ -69,26 +68,6 @@ class SideBar extends React.Component {
     );
   }
 }
-
-const NavigationNonAuth = () => (
-  <Menu>
-    <MenuItem
-      containerElement={<Link to={routes.SIGN_IN} />}
-      primaryText="Sign In"
-    />
-    <MenuItem
-      containerElement={<Link to={routes.SIGN_UP} />}
-      primaryText="Sign Out"
-    />
-  </Menu>
-);
-
-const NavigationAuth = props => (
-  <Menu>
-    <MenuItem containerElement={<Link to={routes.HOME} />} primaryText="Home" />
-    <MenuItem onClick={props.logout} primaryText="Logout" />
-  </Menu>
-);
 
 export default connect(
   state => {

@@ -1,10 +1,10 @@
 import React from 'react';
+import * as routes from '../../../constants/routes';
+
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
-
 import { auth } from '../../../config/firebase';
-import * as routes from '../../../constants/routes';
 
 const withAuthorization = (condition) => (Component) => {
   class WithAuthorization extends React.Component {

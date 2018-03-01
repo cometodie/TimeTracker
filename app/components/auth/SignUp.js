@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
-
 import TypeField from "../typeField/TypeField";
 import RaisedButton from "material-ui/RaisedButton";
 import * as routes from "../../../constants/routes";
+import { Link, withRouter } from "react-router-dom";
 import { auth } from "../../../config/firebase";
 require("./auth.scss");
 

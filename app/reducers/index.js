@@ -1,9 +1,9 @@
-import { combineReducers } from "redux";
-
 import loading from "./loader";
 import sidebar from "./sidebar";
 import timeTrackerReducer from "./timeTracker";
 import sessionReducer from "./session";
+
+import { combineReducers } from "redux";
 
 export default combineReducers({
   loading,
