@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Router from "react-router";
-import NoteField from "../textField/NoteField";
-import TitleField from "../titleField/TitleField";
+import TypeField from "../typeField/TypeField";
 import actions from "../../actions/actions.js";
 import { connect } from "react-redux";
 import RaisedButton from 'material-ui/RaisedButton';
@@ -16,19 +15,16 @@ class NoteForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     var title = this.refs.titleField.state.value;
-    var text = this.refs.textField.state.value;
-    if (this.refs.titleField.state.valid && this.refs.textField.state.valid) {
-      this.props.onSubmitForm({ title: title, text: text });
+    if (this.refs.titleField.state.valid) {
+      this.props.onSubmitForm({ title: title });
       this.refs.titleField.state.value = '';
-      this.refs.textField.state.value = '';
     }
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <TitleField value="" ref="titleField" />
-        <NoteField value="" ref="textField" />
+        <TypeField value="" ref="titleField" type="text" name="title note" placeholder="Enter title"/>
         <RaisedButton type="submit" label="Add Note" />
       </form>
     );

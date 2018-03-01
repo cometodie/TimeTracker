@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
+import TypeField from "../typeField/TypeField";
+import RaisedButton from "material-ui/RaisedButton";
 import * as routes from "../../../constants/routes";
 import * as auth from "../../../config/auth";
+require("./auth.scss");
 
 const SignUpPage = ({ history }) => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm history={history} />
-    <SignUpLink />
+  <div className="form-container">
+    <div className="page-wrapper">
+      <h1>SignUp</h1>
+      <SignUpForm history={history} />
+      {/* <SignUpLink /> */}
+    </div>
   </div>
 );
 
@@ -42,7 +47,9 @@ class SignUpForm extends Component {
 
     const { history } = this.props;
 
-    auth.doCreateUserWithEmailAndPassword(email, passwordOne).then(authUser => {
+    auth
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then(authUser => {
         this.setState(() => ({
           username: "",
           email: "",
@@ -62,39 +69,43 @@ class SignUpForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
+        <TypeField
           value={username}
           onChange={event =>
             this.setState(byPropKey("username", event.target.value))
           }
           type="text"
+          name="FullName"
           placeholder="Full Name"
         />
-        <input
+        <TypeField
           value={email}
           onChange={event =>
             this.setState(byPropKey("email", event.target.value))
           }
           type="text"
+          name="EmailAddress"
           placeholder="Email Address"
         />
-        <input
+        <TypeField
           value={passwordOne}
           onChange={event =>
             this.setState(byPropKey("passwordOne", event.target.value))
           }
           type="password"
+          name="Password"
           placeholder="Password"
         />
-        <input
+        <TypeField
           value={passwordTwo}
           onChange={event =>
             this.setState(byPropKey("passwordTwo", event.target.value))
           }
+          name="ConfirmPassword"
           type="password"
           placeholder="Confirm Password"
         />
-        <button type="submit">Sign Up</button>
+        <RaisedButton type="submit" className="submit-button" label="Sign Up" />
 
         {error && <p>{error.message}</p>}
       </form>
@@ -104,4 +115,4 @@ class SignUpForm extends Component {
 
 export default withRouter(SignUpPage);
 
-export { SignUpForm, SignUpLink };
+export { SignUpForm, SignUpLink, SignUpPage };

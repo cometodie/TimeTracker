@@ -16,7 +16,7 @@ require("./app.scss");
 
 const App = () => (
   <Router>
-    <div>
+    <div className='app-container'>
       <Loader />
       <Nav />
       <SideBar />

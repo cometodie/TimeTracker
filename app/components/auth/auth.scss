@@ -1,0 +1,19 @@
+.form-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  height: 90%;
+  .page-wrapper {
+    margin: 0 auto;
+    h1 {
+      text-align: center;
+    }
+  }
+  form {
+    display: flex;
+    flex-flow: column;
+    .submit-button {
+      margin: 15px auto;
+    }
+  }
+}

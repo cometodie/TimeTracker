@@ -58,22 +58,21 @@ class SideBar extends React.Component {
   }
 }
 
-const NavigationNonAuth = () =>
-  <Menu>
-    <MenuItem containerElement={<Link to={routes.LANDING} />} primaryText="Landing" />
-    <MenuItem containerElement={<Link to={routes.SIGN_IN} />} primaryText="Sign In" />
-  </Menu>
-
 const logout = () => {
   auth.signOut();
 }
+
+const NavigationNonAuth = () =>
+  <Menu>
+    <MenuItem containerElement={<Link to={routes.SIGN_IN} />} primaryText="Sign In" />
+    <MenuItem containerElement={<Link to={routes.SIGN_UP} />} primaryText="Sign Out" />
+  </Menu>
 
 const NavigationAuth = () =>
   <Menu>
     <MenuItem containerElement={<Link to={routes.LANDING} />} primaryText="Landing" />
     <MenuItem containerElement={<Link to={routes.HOME} />} primaryText="Home" />
     <MenuItem containerElement={<Link to={routes.ACCOUNT} />} primaryText="Account" />
-    <MenuItem containerElement={<Link to={routes.SIGN_UP} />} primaryText="Sign Out" />
     <MenuItem onClick={logout} primaryText="Logout" />
   </Menu>
 

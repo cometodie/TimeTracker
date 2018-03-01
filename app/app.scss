@@ -1,12 +1,23 @@
+html,
 body {
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
+  height: 100%;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+h1{
+    letter-spacing: 2px;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-.new{ 
-    color: red;
+#app,
+.app-container {
+  height: 100%;
+}
+
+.new {
+  color: red;
 }
