@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import TypeField from "../typeField/TypeField";
 import RaisedButton from "material-ui/RaisedButton";
 import * as routes from "../../../constants/routes";
-import * as auth from "../../../config/auth";
+import { auth } from "../../../config/firebase";
 require("./auth.scss");
 
 const SignUpPage = ({ history }) => (
@@ -42,26 +42,22 @@ class SignUpForm extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-
-    const { username, email, passwordOne } = this.state;
-
     const { history } = this.props;
 
-    auth
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
-        this.setState(() => ({
-          username: "",
-          email: "",
-          passwordOne: "",
-          passwordTwo: "",
-          error: null
-        }));
-        history.push(routes.HOME);
-      })
-      .catch(error => {
-        this.setState(byPropKey("error", error));
-      });
+    this.setState(
+        {
+          username: this.refs.nameField.state.value,
+          email: this.refs.emailField.state.value,
+          passwordOne: this.refs.passwdField.state.value,
+          passwordTwo: this.refs.passwdConfField.state.value
+        },
+        () => {
+          auth.createUserWithEmailAndPassword(this.state.email, this.state.passwordTwo)
+            .catch(error => {
+              this.setState(byPropKey("error", error));
+            });
+        }
+      );
   }
 
   render() {
@@ -71,36 +67,28 @@ class SignUpForm extends Component {
       <form onSubmit={this.onSubmit}>
         <TypeField
           value={username}
-          onChange={event =>
-            this.setState(byPropKey("username", event.target.value))
-          }
+          ref="nameField"
           type="text"
           name="FullName"
           placeholder="Full Name"
         />
         <TypeField
           value={email}
-          onChange={event =>
-            this.setState(byPropKey("email", event.target.value))
-          }
-          type="text"
+          ref="emailField"
+          type="email"
           name="EmailAddress"
           placeholder="Email Address"
         />
         <TypeField
           value={passwordOne}
-          onChange={event =>
-            this.setState(byPropKey("passwordOne", event.target.value))
-          }
+          ref="passwdField"
           type="password"
           name="Password"
           placeholder="Password"
         />
         <TypeField
           value={passwordTwo}
-          onChange={event =>
-            this.setState(byPropKey("passwordTwo", event.target.value))
-          }
+          ref="passwdConfField"
           name="ConfirmPassword"
           type="password"
           placeholder="Confirm Password"

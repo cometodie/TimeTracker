@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import TypeField from "../typeField/TypeField";
 import RaisedButton from "material-ui/RaisedButton";
 import { SignUpLink } from "./SignUp";
-import * as auth from "../../../config/auth";
+import { auth } from "../../../config/firebase";
 import * as routes from "../../../constants/routes";
 require("./auth.scss");
 
@@ -17,10 +17,6 @@ const SignInPage = ({ history }) => (
     </div>
   </div>
 );
-
-const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value
-});
 
 class SignInForm extends Component {
   constructor(props) {
@@ -35,22 +31,19 @@ class SignInForm extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const { email, password } = this.state;
-
     const { history } = this.props;
-    auth
-      .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState(() => ({
-          email: "",
-          password: "",
-          error: null
-        }));
-        history.push(routes.HOME);
-      })
-      .catch(error => {
-        this.setState(byPropKey("error", error));
-      });
+    this.setState(
+      {
+        email: this.refs.emailField.state.value,
+        password: this.refs.passwdField.state.value
+      },
+      () => {
+        auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+          .catch(error => {
+            this.setState(byPropKey("error", error));
+          });
+      }
+    );
   }
 
   render() {
@@ -61,25 +54,21 @@ class SignInForm extends Component {
       <form onSubmit={this.onSubmit}>
         <TypeField
           value={email}
-          onChange={event =>
-            this.setState(byPropKey("email", event.target.value))
-          }
-          type="text"
+          ref="emailField"
+          type="email"
           name="EmailAddress"
           placeholder="Email Address"
         />
         <TypeField
           value={password}
-          onChange={event =>
-            this.setState(byPropKey("password", event.target.value))
-          }
+          ref="passwdField"
           type="password"
           name="Password"
           placeholder="Password"
         />
         <RaisedButton type="submit" className="submit-button" label="Sign In" />
 
-        {error && <p>{error.message}</p>}
+        {error !== null ? <p>{error.message}</p> : null}
       </form>
     );
   }

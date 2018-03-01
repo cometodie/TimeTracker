@@ -72,7 +72,6 @@ const NavigationAuth = () =>
   <Menu>
     <MenuItem containerElement={<Link to={routes.LANDING} />} primaryText="Landing" />
     <MenuItem containerElement={<Link to={routes.HOME} />} primaryText="Home" />
-    <MenuItem containerElement={<Link to={routes.ACCOUNT} />} primaryText="Account" />
     <MenuItem onClick={logout} primaryText="Logout" />
   </Menu>
 
