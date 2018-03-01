@@ -1,4 +1,4 @@
-import { TOGGLE_LOADING, TOGGLE_SIDEBAR } from "../../constants/utilities";
+import { TOGGLE_LOADING, TOGGLE_SIDEBAR, SET_SNACKBAR } from "../../constants/utilities";
 
 export const setLoading = status => {
   return {
@@ -10,6 +10,14 @@ export const setLoading = status => {
 export const toggleSidebar = status => {
   return {
     type: TOGGLE_SIDEBAR,
+    payload: status
+  };
+};
+
+export const setSnackBar = status => {
+  console.log(status);
+  return {
+    type: SET_SNACKBAR,
     payload: status
   };
 };

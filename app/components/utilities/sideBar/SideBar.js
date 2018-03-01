@@ -5,8 +5,10 @@ import NavigationNonAuth from "./NavigationNonAuth";
 
 import { connect } from "react-redux";
 import { toggleSidebar } from "../../../actions/utilities";
+import { setAuthUser } from "../../../actions/sessionActions";
 import { auth } from "../../../../config/firebase";
 import { clearTimeStore } from "../../../actions/timeActions";
+import { setSnackBar } from '../../../actions/utilities';
 
 class SideBar extends React.Component {
   constructor(props) {
@@ -40,6 +42,7 @@ class SideBar extends React.Component {
 
   logout() {
     this.props.onLogout();
+    this.props.setSnackBar('Уou have successfully logged out!');
     auth.signOut();
   }
 
@@ -81,8 +84,11 @@ export default connect(
       toggleSidebar: state => {
         dispatch(toggleSidebar(state));
       },
+      setSnackBar: state => {
+        dispatch(setSnackBar(state));
+      },
       onLogout: () => dispatch(clearTimeStore()),
-      onSetAuthUser: authUser => dispatch({ type: "AUTH_USER_SET", authUser })
+      onSetAuthUser: authUser => dispatch(setAuthUser(authUser))
     };
   }
 )(SideBar);

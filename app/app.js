@@ -11,6 +11,7 @@ import withAuthentication from "./components/sessions/withAuthentication";
 import TimeTrackerContainer from "./containers/TimeTrackerContainer";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import SnackBar from "./components/utilities/snackBar/SnackBar";
 
 require("./app.scss");
 
@@ -26,6 +27,7 @@ const App = () => (
         <Route exact path={routes.SIGN_UP} component={SignUpPage} />
         <Route path='*' exact={true} component={NotFoundPage} />
       </Switch>
+      <SnackBar />
     </div>
   </Router>
 );
