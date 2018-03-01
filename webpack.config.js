@@ -1,7 +1,7 @@
 var path = require("path");
 
 module.exports = {
-  entry: "./app/app.js", // входная точка - исходный файл
+  entry: "./index.js", // входная точка - исходный файл
   //    resolve: {extensions: ['.js','.jsx']},
   output: {
     path: path.resolve(__dirname, "./public"), // путь к каталогу выходных файлов - папка public

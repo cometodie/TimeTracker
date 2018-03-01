@@ -40,8 +40,7 @@ class SideBar extends React.Component {
   }
 
   logout (){
-    this.props.onSetAuthUser(null);
-    auth.signOut();
+    
   }
 
   render() {
@@ -53,7 +52,6 @@ class SideBar extends React.Component {
         <div style={this.props.isOpen ? this.state.styleWrapper : null} onClick={this.props.isOpen ? this.openSideBar : null } />
         <Paper style={this.state.stylePaper}>
             {this.props.authUser ? <NavigationAuth onItemClick={this.openSideBar} />: <NavigationNonAuth onItemClick={this.openSideBar}/>}
-            <button onClick={this.logout}>click</button>
         </Paper>
       </div>
     );
@@ -66,12 +64,17 @@ const NavigationNonAuth = () =>
     <MenuItem containerElement={<Link to={routes.SIGN_IN} />} primaryText="Sign In" />
   </Menu>
 
+const logout = () => {
+  auth.signOut();
+}
+
 const NavigationAuth = () =>
   <Menu>
     <MenuItem containerElement={<Link to={routes.LANDING} />} primaryText="Landing" />
     <MenuItem containerElement={<Link to={routes.HOME} />} primaryText="Home" />
     <MenuItem containerElement={<Link to={routes.ACCOUNT} />} primaryText="Account" />
-    <MenuItem containerElement={<Link to={routes.SIGN_IN} onClick={auth.doSignOut} />} primaryText="Sign Out" />
+    <MenuItem containerElement={<Link to={routes.SIGN_UP} />} primaryText="Sign Out" />
+    <MenuItem onClick={logout} primaryText="Logout" />
   </Menu>
 
 
