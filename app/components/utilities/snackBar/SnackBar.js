@@ -15,7 +15,6 @@ class SnackBar extends React.Component {
   }
 
   componentWillReceiveProps(props){
-    console.log(props);
     this.setState({
       open: props.textSnack.length > 0
     });

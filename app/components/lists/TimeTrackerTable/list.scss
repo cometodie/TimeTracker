@@ -1,0 +1,16 @@
+.card {
+  margin: 15px auto;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+th {
+  padding: 5px;
+  .cellTime {
+    height: 25px;
+    span{
+      font-size: 12px;
+    }
+  }
+}

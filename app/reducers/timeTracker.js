@@ -8,7 +8,6 @@ const timeTrackerReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TIME_SET: {
       return {
-        ...state,
         userTime: action.payload
       };
     }

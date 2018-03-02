@@ -1,10 +1,10 @@
-import TimeTrackerTable from "../components/lists/timeTrackerTable/TimeTrackerTable";
+import TimeTrackerAdd from "../components/timeTrackerAdd/timeTrackerAdd";
 import withAuthorization from "../components/sessions/withAuthorization";
 
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { setTime } from "../actions/timeActions";
-import { setLoading } from "../actions/utilities";
+import { setSnackBar } from "../actions/utilities";
 
 const mapStateToProps = state => {
   return {
@@ -18,7 +18,9 @@ const authCondition = authUser => !!authUser;
 const mapDispatchToProps = dispatch => {
   return {
     onSetTime: time => dispatch(setTime(time)),
-    setLoader: time => dispatch(setLoading(time)),
+    setSnackBar: state => {
+      dispatch(setSnackBar(state));
+    },
     toggleLoading: status => {
       dispatch(setLoading(status));
     }
@@ -28,4 +30,4 @@ const mapDispatchToProps = dispatch => {
 export default compose(
   withAuthorization(authCondition),
   connect(mapStateToProps, mapDispatchToProps)
-)(TimeTrackerTable);
+)(TimeTrackerAdd);

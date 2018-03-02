@@ -9,9 +9,10 @@ import SignUpPage from "./components/auth/SignUp";
 import SignInForm from "./components/auth/SignIn";
 import withAuthentication from "./components/sessions/withAuthentication";
 import TimeTrackerContainer from "./containers/TimeTrackerContainer";
+import SnackBar from "./components/utilities/snackBar/SnackBar";
+import TimeTrackerAddContainer from "./containers/TimeTrackerAddContainer";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import SnackBar from "./components/utilities/snackBar/SnackBar";
 
 require("./app.scss");
 
@@ -23,6 +24,7 @@ const App = () => (
       <SideBar />
       <Switch>
         <Route exact path={routes.HOME} component={TimeTrackerContainer} />
+        <Route exact path={routes.ADD} component={TimeTrackerAddContainer} />
         <Route exact path={routes.SIGN_IN} component={SignInForm} />
         <Route exact path={routes.SIGN_UP} component={SignUpPage} />
         <Route path='*' exact={true} component={NotFoundPage} />

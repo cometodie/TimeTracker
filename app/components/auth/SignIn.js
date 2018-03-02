@@ -11,7 +11,7 @@ import { setSnackBar } from "../../actions/utilities";
 require("./auth.scss");
 
 const SignInPage = ({ history, setSnackBar }) => (
-  <div className="form-container">
+  <div className="container">
     <div className="page-wrapper">
       <h1>SignIn</h1>
       <SignInForm history={history} setSnackBar={setSnackBar} />

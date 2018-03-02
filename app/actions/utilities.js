@@ -15,7 +15,6 @@ export const toggleSidebar = status => {
 };
 
 export const setSnackBar = status => {
-  console.log(status);
   return {
     type: SET_SNACKBAR,
     payload: status

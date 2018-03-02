@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  height: 90%;
+  .page-wrapper {
+    margin: 0 auto;
+    h1 {
+      text-align: center;
+    }
+  }
+}

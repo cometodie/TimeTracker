@@ -11,7 +11,7 @@ class Loader extends Component {
     if (this.props.isLoading) {
       return (
         <div className="wrapper">
-          <div className="head">
+          {/* <div className="head">
             <div className="topHead">
               <div className="eyebrow1" />
               <div className="eyebrow2" />
@@ -23,7 +23,7 @@ class Loader extends Component {
               </div>
             </div>
             <div className="mouth" />
-          </div>
+          </div> */}
         </div>
       );
     }
