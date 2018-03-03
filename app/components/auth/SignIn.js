@@ -45,7 +45,7 @@ class SignInForm extends Component {
           .then(currentUser => {
             if (currentUser) {
               this.props.setSnackBar(`You have successfully logged in, ${this.state.email}`);
-              this.props.history.push(routes.HOME);
+              this.props.history.push(routes.ADD);
             }
           })
           .catch(error => {

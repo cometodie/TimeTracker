@@ -22,7 +22,6 @@ require("./timeTracker.scss");
 class TimeTrackerAdd extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.addTime = this.addTime.bind(this);
     this.getTime = this.getTime.bind(this);
     this.prepareDate = this.prepareDate.bind(this);

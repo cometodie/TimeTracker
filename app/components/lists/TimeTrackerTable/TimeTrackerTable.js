@@ -111,6 +111,9 @@ class TimeTrackerTable extends Component {
       <div className="container">
         <div className="page-wrapper">
           <Card className="card">
+      {this.props.timeStore.map( (el, index) =>{
+        return <span key={index}>{el.date}</span>
+      })}
             {/* <table>
               <tbody>{calendar}</tbody>
             </table> */}
