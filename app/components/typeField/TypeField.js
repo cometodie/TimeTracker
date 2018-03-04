@@ -10,6 +10,8 @@ class TypeField extends Component {
       valid: isValid,
       type: props.type,
       name: props.name,
+      min: props.min,
+      max: props.max,
       placeholder: props.placeholder
     };
     this.onChange = this.onChange.bind(this);
@@ -32,6 +34,8 @@ class TypeField extends Component {
         value={this.state.value}
         onChange={this.onChange}
         placeholder={this.state.placeholder}
+        min={this.state.min}
+        max={this.state.max}
       />
     );
   }

@@ -8,11 +8,12 @@ import * as routes from "../constants/routes";
 import SignUpPage from "./components/auth/SignUp";
 import SignInForm from "./components/auth/SignIn";
 import withAuthentication from "./components/sessions/withAuthentication";
-import TimeTrackerContainer from "./containers/TimeTrackerContainer";
+import HomeContainer from "./containers/HomeContainer";
 import SnackBar from "./components/utilities/snackBar/SnackBar";
 import TimeTrackerAddContainer from "./containers/TimeTrackerAddContainer";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import SignInContainer from "./containers/SignInContainer";
 
 require("./app.scss");
 
@@ -23,9 +24,9 @@ const App = () => (
       <Nav />
       <SideBar />
       <Switch>
-        <Route exact path={routes.HOME} component={TimeTrackerContainer} />
+        <Route exact path={routes.HOME} component={HomeContainer} />
         <Route exact path={routes.ADD} component={TimeTrackerAddContainer} />
-        <Route exact path={routes.SIGN_IN} component={SignInForm} />
+        <Route exact path={routes.SIGN_IN} component={SignInContainer} />
         <Route exact path={routes.SIGN_UP} component={SignUpPage} />
         <Route path='*' exact={true} component={NotFoundPage} />
       </Switch>
@@ -35,3 +36,4 @@ const App = () => (
 );
 
 export default withAuthentication(App);
+

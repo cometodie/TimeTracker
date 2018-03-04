@@ -7,11 +7,10 @@ import { auth } from "../../../config/firebase";
 require("./auth.scss");
 
 const SignUpPage = ({ history }) => (
-  <div className="form-container">
+  <div className="container">
     <div className="page-wrapper">
       <h1>SignUp</h1>
       <SignUpForm history={history} />
-      {/* <SignUpLink /> */}
     </div>
   </div>
 );
@@ -21,10 +20,6 @@ const SignUpLink = () => (
     Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
   </p>
 );
-
-const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value
-});
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -44,19 +39,23 @@ class SignUpForm extends Component {
     const { history } = this.props;
 
     this.setState(
-        {
-          username: this.refs.nameField.state.value,
-          email: this.refs.emailField.state.value,
-          passwordOne: this.refs.passwdField.state.value,
-          passwordTwo: this.refs.passwdConfField.state.value
-        },
-        () => {
-          auth.createUserWithEmailAndPassword(this.state.email, this.state.passwordTwo)
-            .catch(error => {
-              this.setState(byPropKey("error", error));
-            });
-        }
-      );
+      {
+        username: this.refs.nameField.state.value,
+        email: this.refs.emailField.state.value,
+        passwordOne: this.refs.passwdField.state.value,
+        passwordTwo: this.refs.passwdConfField.state.value
+      },
+      () => {
+        auth
+          .createUserWithEmailAndPassword(this.state.email, this.state.passwordTwo)
+          .then(data => {
+            this.props.setSnackBar(`Account has successfully created!`);
+          })
+          .catch(error => {
+            this.setState({ error: error });
+          });
+      }
+    );
   }
 
   render() {
@@ -64,27 +63,9 @@ class SignUpForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <TypeField
-          value={username}
-          ref="nameField"
-          type="text"
-          name="FullName"
-          placeholder="Full Name"
-        />
-        <TypeField
-          value={email}
-          ref="emailField"
-          type="email"
-          name="EmailAddress"
-          placeholder="Email Address"
-        />
-        <TypeField
-          value={passwordOne}
-          ref="passwdField"
-          type="password"
-          name="Password"
-          placeholder="Password"
-        />
+        <TypeField value={username} ref="nameField" type="text" name="FullName" placeholder="Full Name" />
+        <TypeField value={email} ref="emailField" type="email" name="EmailAddress" placeholder="Email Address" />
+        <TypeField value={passwordOne} ref="passwdField" type="password" name="Password" placeholder="Password" />
         <TypeField
           value={passwordTwo}
           ref="passwdConfField"

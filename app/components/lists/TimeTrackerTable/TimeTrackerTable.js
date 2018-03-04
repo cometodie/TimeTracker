@@ -6,126 +6,99 @@ import ActionFavorite from "material-ui/svg-icons/action/favorite";
 import ActionFavoriteBorder from "material-ui/svg-icons/action/favorite-border";
 import NavigationClose from "material-ui/svg-icons/navigation/close";
 import TimeTrackerRow from "./TimeTrackerRow";
-import * as dbApi from "../../../dbApi/TimeTrackerApi";
-import * as routes from "../../../../constants/routes";
+import monthNames from "../../../../constants/monthNames";
 
 import { db } from "../../../../config/firebase";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { List, ListItem } from "material-ui/List";
 import { Card, CardHeader } from "material-ui/Card";
-import { RaisedButton } from "material-ui";
+import { ArrowLeftIcon } from "../../utilities/icons/ArrowLeftIcon";
+import { ArrowRightIcon } from "../../utilities/icons/ArrowRightIcon";
 require("./list.scss");
 
 class TimeTrackerTable extends Component {
   constructor(props) {
     super(props);
-    this.getTime = this.getTime.bind(this);
-    this.prepareArray = this.prepareArray.bind(this);
+    this.getUserMonths = this.getUserMonths.bind(this);
+    this.getMonthArray = this.getMonthArray.bind(this);
+    this.nextMonth = this.nextMonth.bind(this);
+    this.prevMonth = this.prevMonth.bind(this);
     this.state = {
       timeStore: [],
       month: [],
-      currentMonth: 0,
+      userMonths: [],
+      nameOfMonth: "",
+      currentMonth: props.currentMonth,
       currentYear: 0
     };
   }
 
-  componentWillMount() {
-    this.getTime();
-    let month = this.prepareArray(this.state.currentYear, this.state.currentMonth);
-    this.setState({
-      month: month,
-      currentMonth: new Date().getMonth() + 1,
-      currentYear: new Date().getFullYear()
+  componentWillReceiveProps(props) {
+    let month = this.getMonthArray(this.state.currentYear, props.currentMonth);
+    let date = new Date();
+    this.setState(prevState => {
+      return {
+        month: month,
+        countOfDays: month.size,
+        timeStore: props.timeStore,
+        rows: Math.floor(month.length / 7) + (month.length % 7 ? 1 : 0),
+        currentYear: date.getFullYear(),
+        userMonths: this.getUserMonths(),
+        currentMonth: props.currentMonth,
+        nameOfMonth: monthNames[props.currentMonth - 1]
+      };
     });
   }
 
-  componentWillReceiveProps(nProps) {
-    this.setState({ timeStore: nProps.timeStore });
+  getUserMonths() {
+    let userMonths = [];
+    this.props.timeStore.forEach(el => {
+      let month = new Date(el.date).getMonth() + 1;
+      !userMonths.includes(month) ? userMonths.push(month) : null;
+    });
+    return userMonths;
   }
 
-  prepareArray(year, mounth) {
-    let size = new Date(year, mounth, 0).getDate();
+  getMonthArray(year, month) {
+    let size = new Date(year, month, 0).getDate();
     let daysMonth = Array.from(Array(size).keys());
     daysMonth.shift(0);
     daysMonth.push(size);
-    this.setState({ countOfdays: size });
     return daysMonth;
   }
 
-  getTime() {
-    let timeRef = db
-      .ref(`/TimeTracker/${this.props.authUser.uid}`)
-      .orderByKey()
-      .limitToLast(100);
-    let tempStore = [];
-    timeRef.on("child_added", snapshot => {
-      tempStore.push({
-        date: snapshot.val().date,
-        time: snapshot.val().time,
-        id: snapshot.key
-      });
-    });
-    this.props.onSetTime(tempStore);
+  prevMonth() {
+    this.props.onSetMonth(this.props.currentMonth - 1);
+  }
+
+  nextMonth() {
+    this.props.onSetMonth(this.props.currentMonth + 1);
   }
 
   render() {
-    // let calendar = [];
-    // let tr = [];
-    // let week = 0;
-    // let residue = this.state.countOfdays % 7;
-    // let tempLastDay = 0;
-    // console.log("state from render: ", this.state.timeStore);
-    // console.log("props from render: ", this.props.timeStore.length);
-    // if (this.state.timeStore) {
-    //   this.state.month.forEach((value, index) => {
-    //     tr.push(
-    //       <th key={index}>
-    //         {value}
-    //         <div className="cellTime">
-    //           <span>Hours:</span>
-    //         </div>
-    //       </th>
-    //     );
-    //     if (value % 7 == 0) {
-    //       calendar.push(<tr key={week}>{tr}</tr>);
-    //       tempLastDay = value;
-    //       tr = [];
-    //       week++;
-    //     }
-    //   });
-    //   for (let i = 1; i < residue + 1; i++) {
-    //     tr.push(
-    //       <th key={tempLastDay - i}>
-    //         {tempLastDay + i}
-    //         <div className="cellTime">
-    //           <span>Hours:</span>
-    //         </div>
-    //       </th>
-    //     );
-    //   }
-    //   calendar.push(<tr key={week}>{tr}</tr>);
-    //   tr = [];
-    //   week++;
+    let rows = [];
+    for (let i = 0; i < this.state.rows; i++) {
+      let start = i * 7,
+        end = (i + 1) * 7 > this.state.countOfDays ? this.state.countOfDays : (i + 1) * 7;
+      rows.push(
+        <TimeTrackerRow
+          key={i}
+          timeStore={this.state.timeStore}
+          currentMonth={this.state.currentMonth}
+          currentYear={this.state.currentYear}
+          days={this.state.month.slice(start, end)}
+        />
+      );
+    }
     return (
-      <div className="container">
-        <div className="page-wrapper">
-          <Card className="card">
-      {this.props.timeStore.map( (el, index) =>{
-        return <span key={index}>{el.date}</span>
-      })}
-            {/* <table>
-              <tbody>{calendar}</tbody>
-            </table> */}
-            <TimeTrackerRow {...this.props}/>
-            <RaisedButton
-              containerElement={<Link to={routes.ADD} className="add-time" />}
-              label="Add time"
-              primary={true}
-            />
-          </Card>
-        </div>
+      <Card className="card min-height">
+      <div className="header">
+        <ArrowLeftIcon onClick={this.prevMonth}/>
+        <h2>{this.state.nameOfMonth}</h2>
+        <ArrowRightIcon onClick={this.nextMonth}/>
       </div>
+        <div>{rows}</div>
+      </Card>
     );
   }
 }

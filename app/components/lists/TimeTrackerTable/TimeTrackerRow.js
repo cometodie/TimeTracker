@@ -1,17 +1,44 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
+import TimeTrackerCell from "./TimeTrackerCell";
+require("./list.scss");
 
 class TimeTrackerRow extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      days: [],
+      timeStore: []
+    };
+  }
+
+  componentWillMount() {
+    this.setState({
+      days: this.props.days,
+      timeStore: this.props.timeStore,
+      currentMonth: this.props.currentMonth,
+      currentYear: this.props.currentYear
+    });
   }
 
   componentWillReceiveProps(nProps) {
-    this.setState({ timeStore: nProps.timeStore });
+    this.setState({
+      days: nProps.days,
+      timeStore: nProps.timeStore,
+      currentMonth: nProps.currentMonth,
+      currentYear: nProps.currentYear
+    });
   }
-  
+
   render() {
-    
-      return <div>sdfsd</div>;
+    const row = this.props.days.map((el, i) => {
+      return <TimeTrackerCell {...this.state} day={el} key={i} />;
+    });
+    return (
+      <div className="flex-row">
+        <span>Hours: </span>
+        <div className="flex-row">{row}</div>
+      </div>
+    );
   }
 }
 

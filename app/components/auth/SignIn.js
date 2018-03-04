@@ -49,7 +49,8 @@ class SignInForm extends Component {
             }
           })
           .catch(error => {
-            this.setState(byPropKey("error", error));
+            this.props.setSnackBar(`Incorrect password or email, please recheck data.`);
+            this.setState({ error: error });
           });
       }
     );
@@ -76,24 +77,12 @@ class SignInForm extends Component {
           placeholder="Password"
         />
         <RaisedButton type="submit" className="submit-button" label="Sign In" />
-
-        {error !== null ? <p>{error.message}</p> : null}
       </form>
     );
   }
 }
 
-// export default withRouter(SignInPage);
-export default connect(
-  null,
-  dispatch => {
-    return {
-      setSnackBar: state => {
-        dispatch(setSnackBar(state));
-      },
-    };
-  }
-)(SignInPage);
+export default SignInPage;
 
 
 export { SignInForm };

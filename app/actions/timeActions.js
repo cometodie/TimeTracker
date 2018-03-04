@@ -1,4 +1,4 @@
-import { TIME_SET, TIME_CLEAR } from '../../constants/timeTracker'
+import { TIME_SET, TIME_CLEAR, SET_MONTH } from '../../constants/timeTracker'
 
 export const clearTimeStore = () => {
   return {
@@ -12,3 +12,14 @@ export const setTime = payload => {
     payload: payload
   };
 };
+
+export const setMonth = payload => {
+  console.log('act: ',payload);
+  payload = payload > 12 ? 1 : payload;
+  payload = payload <= 0 ? 12 : payload;
+  return {
+    type: SET_MONTH,
+    payload: payload
+  };
+};
+

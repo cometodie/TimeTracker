@@ -22,8 +22,8 @@ require("./timeTracker.scss");
 class TimeTrackerAdd extends Component {
   constructor(props) {
     super(props);
+    this.back = this.back.bind(this);
     this.addTime = this.addTime.bind(this);
-    this.getTime = this.getTime.bind(this);
     this.prepareDate = this.prepareDate.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
@@ -39,47 +39,34 @@ class TimeTrackerAdd extends Component {
     });
   }
 
+  back() {
+    this.props.history.push(routes.HOME);
+  }
+
   prepareDate(date) {
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   }
 
-  componentDidMount(props) {
+  componentWillMount(props) {
     const { onSetTime } = this.props;
-    this.getTime();
-  }
-
-  getTime() {
-    let timeRef = db
-      .ref(`/TimeTracker/${this.props.authUser.uid}`)
-      .orderByKey()
-      .limitToLast(100);
-    let tempStore = [];
-    timeRef.on("child_added", snapshot => {
-      tempStore.push({
-        date: snapshot.val().date,
-        time: snapshot.val().time,
-        id: snapshot.key
-      });
-    });
-    this.props.onSetTime(tempStore);
-  }
-
-  componentWillReceiveProps() {
-    const { timeStore } = this.props;
+    this.props.onSetTime(dbApi.getTimeDate(this.props.authUser.uid));
   }
 
   addTime(event) {
     event.preventDefault();
-    if (this.refs.timeField.state.value) {
+    if (this.refs.timeField.state.value && this.state.date) {
       let time = this.refs.timeField.state.value;
       this.setState(
         {
           time: this.refs.timeField.state.value
         },
         () => {
-          dbApi.doCreateTime(this.props.authUser.uid, this.state.date, this.state.time);
+          var existEl = this.props.timeStore.find(el => el.date == this.state.date);
+          existEl
+            ? dbApi.updateTime(this.props.authUser.uid, existEl.id, this.state.time)
+            : dbApi.doCreateTime(this.props.authUser.uid, this.state.date, this.state.time);
+
           this.props.setSnackBar("Your time successfuly reported!");
-          this.getTime();
           this.props.history.push(routes.HOME);
         }
       );
@@ -93,8 +80,11 @@ class TimeTrackerAdd extends Component {
           <Card className="card">
             <form onSubmit={this.addTime}>
               <DatePicker hintText="Portrait Dialog" container="inline" mode="landscape" onChange={this.handleChange} />
-              <TypeField type="number" value="" ref="timeField" name="Time Field" />
-              <RaisedButton type="submit" className="submit-button" label="Add Time" />
+              <TypeField type="number" value="" ref="timeField" name="Time Field" min="0" max="24" />
+              <div className="flex-row">
+                <RaisedButton className="submit-button" label="Back" secondary={true} onClick={this.back} />
+                <RaisedButton type="submit" className="submit-button" primary={true} label="Add Time" />
+              </div>
             </form>
           </Card>
         </div>
