@@ -5,32 +5,23 @@ class TimeTrackerCell extends Component {
     super(props);
     this.udpateCell = this.udpateCell.bind(this);
     this.state = {
-      timeStore: props.timeStore,
-      day: null,
       time: null,
       reported: null,
       isBig: false,
       isNormal: false,
       isDefault: false,
-      currentMonth: null,
-      currentYear: null
     };
   }
 
   componentWillMount() {
     this.setState(
       {
-        timeStore: this.props.timeStore,
-        day: this.props.day,
-        currentMonth: this.props.currentMonth,
-        currentYear: this.props.currentYear,
         time: null,
         isNormal: null,
         isBig: null,
         isDefault: null
       },
       () => {
-        // console.log('cell state: ', this.state);
         this.udpateCell();
       }
     );
@@ -39,10 +30,6 @@ class TimeTrackerCell extends Component {
   componentWillReceiveProps(props) {
     this.setState(
       {
-        timeStore: props.timeStore,
-        day: props.day,
-        currentMonth: props.currentMonth,
-        currentYear: props.currentYear,
         time: null,
         isNormal: null,
         isBig: null,
@@ -55,17 +42,15 @@ class TimeTrackerCell extends Component {
   }
 
   udpateCell() {
-    // console.log('in update: ', this.state.timeStore);
-    let logDay = this.state.timeStore.find(el => {
+    let logDay = this.props.timeStore.find(el => {
       let elDate = new Date(el.date);
       return (
-        elDate.getDate() === this.state.day &&
-        elDate.getMonth() + 1 === this.state.currentMonth &&
-        elDate.getFullYear() === this.state.currentYear
+        elDate.getDate() === this.props.day &&
+        elDate.getMonth() + 1 === this.props.currentMonth &&
+        elDate.getFullYear() === this.props.currentYear
       );
     });
     if (logDay) {
-      // console.log('logDay: ', logDay);
       if (logDay.time > 8) {
         this.setState({ isBig: true, time: logDay.time });
       } else if (logDay.time == 0) {
@@ -77,7 +62,6 @@ class TimeTrackerCell extends Component {
   }
 
   render() {
-    // console.log('render state: ', this.state);
     let cellStyle = "transparent";
     if (this.state.isBig) {
       cellStyle = "#B71C1C";

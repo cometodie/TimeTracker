@@ -31,7 +31,7 @@ class TimeTrackerRow extends Component {
 
   render() {
     const row = this.props.days.map((el, i) => {
-      return <TimeTrackerCell {...this.state} day={el} key={i} />;
+      return <TimeTrackerCell {...this.props} day={el} key={i} />;
     });
     return (
       <div className="flex-row">

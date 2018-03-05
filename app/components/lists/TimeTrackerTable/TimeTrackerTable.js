@@ -83,7 +83,7 @@ class TimeTrackerTable extends Component {
       rows.push(
         <TimeTrackerRow
           key={i}
-          timeStore={this.state.timeStore}
+          timeStore={this.props.timeStore}
           currentMonth={this.state.currentMonth}
           currentYear={this.state.currentYear}
           days={this.state.month.slice(start, end)}
