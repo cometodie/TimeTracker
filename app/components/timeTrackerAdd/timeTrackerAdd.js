@@ -49,12 +49,15 @@ class TimeTrackerAdd extends Component {
 
   componentWillMount(props) {
     const { onSetTime } = this.props;
+    this.props.setLoading(true);
     this.props.onSetTime(dbApi.getTimeDate(this.props.authUser.uid));
+    this.props.setLoading(false);
   }
 
   addTime(event) {
     event.preventDefault();
     if (this.refs.timeField.state.value && this.state.date) {
+      this.props.setLoading(true);
       let time = this.refs.timeField.state.value;
       this.setState(
         {
@@ -66,6 +69,7 @@ class TimeTrackerAdd extends Component {
             ? dbApi.updateTime(this.props.authUser.uid, existEl.id, this.state.time)
             : dbApi.doCreateTime(this.props.authUser.uid, this.state.date, this.state.time);
 
+          this.props.setLoading(false);
           this.props.setSnackBar("Your time successfuly reported!");
           this.props.history.push(routes.HOME);
         }

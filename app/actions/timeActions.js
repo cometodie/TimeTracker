@@ -14,7 +14,6 @@ export const setTime = payload => {
 };
 
 export const setMonth = payload => {
-  console.log('act: ',payload);
   payload = payload > 12 ? 1 : payload;
   payload = payload <= 0 ? 12 : payload;
   return {

@@ -26,7 +26,6 @@ export const timeTrackerReducer = (state = INITIAL_TIME_STATE, action) => {
 const INITIAL_MONTH_STATE = new Date().getMonth() + 1;
 
 export const monthReducer = (state = INITIAL_MONTH_STATE, action) => {
-  console.log(state);
   switch (action.type) {
     case SET_MONTH: {
       let newState = Object.assign({}, state);
