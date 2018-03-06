@@ -16,20 +16,7 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    // console.log('willMoint props: ', this.props);
-    this.props.onSetTime(dbApi.getTimeDate(this.props.authUser.uid));
-    this.setState({
-      currentMonth: this.props.currentMonth,
-      timeStore: this.props.timeStore
-    });
-  }
-
-  componentWillReceiveProps(props) {
-    // console.log('willReceiveProps props: ', props);
-    this.setState({
-      currentMonth: this.props.currentMonth,
-      timeStore: props.timeStore
-    });
+    this.props.onSetData(dbApi.getTimeDate(this.props.authUser.uid));
   }
 
   render() {

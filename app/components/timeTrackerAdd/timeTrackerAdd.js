@@ -50,7 +50,7 @@ class TimeTrackerAdd extends Component {
   componentWillMount(props) {
     const { onSetTime } = this.props;
     this.props.setLoading(true);
-    this.props.onSetTime(dbApi.getTimeDate(this.props.authUser.uid));
+    this.props.onSetData(dbApi.getTimeDate(this.props.authUser.uid));
     this.props.setLoading(false);
   }
 

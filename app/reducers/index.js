@@ -11,6 +11,7 @@ export default combineReducers({
   sidebar,
   snackBar,
   currentMonth: timeTrackerReducer.monthReducer,
+  currentYear: timeTrackerReducer.yearReducer,
   sessionState: sessionReducer,
   timeTrackerState: timeTrackerReducer.timeTrackerReducer
 });

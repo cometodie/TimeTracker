@@ -3,7 +3,7 @@ import withAuthorization from "../components/sessions/withAuthorization";
 
 import { connect } from "react-redux";
 import { compose } from "recompose";
-import { setTime } from "../actions/timeActions";
+import { setTimeTrackerData } from "../actions/timeActions";
 import { setSnackBar, setLoading } from "../actions/utilities";
 
 const mapStateToProps = state => {
@@ -17,7 +17,7 @@ const authCondition = authUser => !!authUser;
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSetTime: time => dispatch(setTime(time)),
+    onSetData: time => dispatch(setTimeTrackerData(time)),
     setLoading: state => dispatch(setLoading(state)),
     setSnackBar: state => {
       dispatch(setSnackBar(state));

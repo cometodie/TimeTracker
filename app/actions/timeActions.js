@@ -6,7 +6,7 @@ export const clearTimeStore = () => {
   };
 };
 
-export const setTime = payload => {
+export const setTimeTrackerData = payload => {
   return {
     type: TIME_SET,
     payload: payload
@@ -18,6 +18,13 @@ export const setMonth = payload => {
   payload = payload <= 0 ? 12 : payload;
   return {
     type: SET_MONTH,
+    payload: payload
+  };
+};
+
+export const setYear = payload => {
+  return {
+    type: SET_YEAR,
     payload: payload
   };
 };

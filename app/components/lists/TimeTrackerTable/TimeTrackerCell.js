@@ -42,40 +42,34 @@ class TimeTrackerCell extends Component {
   }
 
   udpateCell() {
-    let logDay = this.props.timeStore.find(el => {
-      let elDate = new Date(el.date);
-      return (
-        elDate.getDate() === this.props.day &&
-        elDate.getMonth() + 1 === this.props.currentMonth &&
-        elDate.getFullYear() === this.props.currentYear
-      );
-    });
-    if (logDay) {
-      if (logDay.time > 8) {
-        this.setState({ isBig: true, time: logDay.time });
-      } else if (logDay.time == 0) {
-        this.setState({ isDefault: true, time: logDay.time });
-      } else if (logDay.time <= 4) {
-        this.setState({ isNormal: true, time: logDay.time });
+    if (this.props.time != null) {
+      if (this.props.time > 8) {
+        this.setState({ isBig: true, time: this.props.time });
+      } else if (this.props.time == 0) {
+        this.setState({ isDefault: true, time: this.props.time });
+      } else if (this.props.time <= 4) {
+        this.setState({ isNormal: true, time: this.props.time });
       }
     }
   }
 
   render() {
-    let cellStyle = "transparent";
+    console.log(this.props);
+    let cellStyle = this.props.active ? '' : 'disabled';
+    let cellTimeStyle = "transparent";
     if (this.state.isBig) {
-      cellStyle = "#B71C1C";
+      cellTimeStyle = "isBig";
     }
     if (this.state.isNormal) {
-      cellStyle = "#00E676";
+      cellTimeStyle = "isNormal";
     }
     if (this.state.isDefault) {
-      cellStyle = "#9E9E9E";
+      cellTimeStyle = "isDefault";
     }
     return (
-      <div className="cell">
+      <div className={'cell ' + cellStyle}>
         <div>{this.props.day}</div>
-        <span style={{ background: cellStyle }}>{this.state.time}</span>
+        <span className={cellTimeStyle} >{this.props.time}</span>
       </div>
     );
   }

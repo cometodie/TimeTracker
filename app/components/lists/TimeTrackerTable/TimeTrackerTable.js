@@ -14,57 +14,30 @@ import { List, ListItem } from "material-ui/List";
 import { Card, CardHeader } from "material-ui/Card";
 import { ArrowLeftIcon } from "../../utilities/icons/ArrowLeftIcon";
 import { ArrowRightIcon } from "../../utilities/icons/ArrowRightIcon";
+import { getMonthArray, getUserMonths } from "../../../helpers/monthLogic";
 require("./list.scss");
 
 class TimeTrackerTable extends Component {
   constructor(props) {
     super(props);
-    this.getUserMonths = this.getUserMonths.bind(this);
-    this.getMonthArray = this.getMonthArray.bind(this);
     this.nextMonth = this.nextMonth.bind(this);
     this.prevMonth = this.prevMonth.bind(this);
     this.state = {
-      timeStore: [],
       month: [],
-      userMonths: [],
       nameOfMonth: "",
-      currentMonth: props.currentMonth,
-      currentYear: 0
     };
   }
 
   componentWillReceiveProps(props) {
-    let month = this.getMonthArray(this.state.currentYear, props.currentMonth);
-    let date = new Date();
+    const month = getMonthArray(props.currentYear, props.currentMonth, props.timeStore);
     this.setState(prevState => {
       return {
         month: month,
         countOfDays: month.size,
-        timeStore: props.timeStore,
         rows: Math.floor(month.length / 7) + (month.length % 7 ? 1 : 0),
-        currentYear: date.getFullYear(),
-        userMonths: this.getUserMonths(),
-        currentMonth: props.currentMonth,
         nameOfMonth: monthNames[props.currentMonth - 1]
       };
     });
-  }
-
-  getUserMonths() {
-    let userMonths = [];
-    this.props.timeStore.forEach(el => {
-      let month = new Date(el.date).getMonth() + 1;
-      !userMonths.includes(month) ? userMonths.push(month) : null;
-    });
-    return userMonths;
-  }
-
-  getMonthArray(year, month) {
-    let size = new Date(year, month, 0).getDate();
-    let daysMonth = Array.from(Array(size).keys());
-    daysMonth.shift(0);
-    daysMonth.push(size);
-    return daysMonth;
   }
 
   prevMonth() {
@@ -76,16 +49,16 @@ class TimeTrackerTable extends Component {
   }
 
   render() {
-    let rows = [];
+    const rows = [];
     for (let i = 0; i < this.state.rows; i++) {
-      let start = i * 7,
+      const start = i * 7,
         end = (i + 1) * 7 > this.state.countOfDays ? this.state.countOfDays : (i + 1) * 7;
       rows.push(
         <TimeTrackerRow
           key={i}
           timeStore={this.props.timeStore}
-          currentMonth={this.state.currentMonth}
-          currentYear={this.state.currentYear}
+          currentMonth={this.props.currentMonth}
+          currentYear={this.props.currentYear}
           days={this.state.month.slice(start, end)}
         />
       );
