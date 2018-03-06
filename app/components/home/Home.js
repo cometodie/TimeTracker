@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TimeTrackerTable from "../lists/TimeTrackerTable/TimeTrackerTable";
+import TimeTrackerTable from "../table/TimeTrackerTable/TimeTrackerTable";
 import * as dbApi from "../../dbApi/TimeTrackerApi";
 import * as routes from "../../../constants/routes";
 
@@ -26,7 +26,7 @@ class Home extends Component {
           <TimeTrackerTable {...this.props} />
           <RaisedButton
             className="add-button"
-            containerElement={<Link to={routes.ADD} className="add-time" />}
+            containerElement={<Link to={routes.ADD} className="add-time" />}  
             label="Add time"
             primary={true}
           />

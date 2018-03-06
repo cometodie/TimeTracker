@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import TimeTrackerCell from "./TimeTrackerCell";
-require("./list.scss");
+import TimeTrackerCell from "../timeTrackerCell/TimeTrackerCell";
+
+require("./timeTrackerRow.scss");
 
 class TimeTrackerRow extends Component {
   constructor(props) {

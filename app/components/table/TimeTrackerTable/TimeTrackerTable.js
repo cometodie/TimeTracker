@@ -5,8 +5,7 @@ import Checkbox from "material-ui/Checkbox";
 import ActionFavorite from "material-ui/svg-icons/action/favorite";
 import ActionFavoriteBorder from "material-ui/svg-icons/action/favorite-border";
 import NavigationClose from "material-ui/svg-icons/navigation/close";
-import TimeTrackerRow from "./TimeTrackerRow";
-import monthNames from "../../../../constants/monthNames";
+import * as date from "../../../../constants/date";
 
 import { db } from "../../../../config/firebase";
 import { connect } from "react-redux";
@@ -15,11 +14,13 @@ import { Card, CardHeader } from "material-ui/Card";
 import { ArrowLeftIcon } from "../../utilities/icons/ArrowLeftIcon";
 import { ArrowRightIcon } from "../../utilities/icons/ArrowRightIcon";
 import { getMonthArray, getUserMonths } from "../../../helpers/monthLogic";
-require("./list.scss");
+import TimeTrackerRow from "./timeTrackerRow/TimeTrackerRow";
+require("./timeTrackerTable.scss");
 
 class TimeTrackerTable extends Component {
   constructor(props) {
     super(props);
+    console.log(date.daysNames);
     this.nextMonth = this.nextMonth.bind(this);
     this.prevMonth = this.prevMonth.bind(this);
     this.state = {
@@ -35,7 +36,7 @@ class TimeTrackerTable extends Component {
         month: month,
         countOfDays: month.size,
         rows: Math.floor(month.length / 7) + (month.length % 7 ? 1 : 0),
-        nameOfMonth: monthNames[props.currentMonth - 1]
+        nameOfMonth: date.monthNames[props.currentMonth - 1]
       };
     });
   }
@@ -63,6 +64,9 @@ class TimeTrackerTable extends Component {
         />
       );
     }
+    const nameOfDays = date.daysNames.map( (el, i) => {
+      return <div key={i}>{el}</div>
+    })
     return (
       <Card className="card min-height">
       <div className="header">
@@ -70,6 +74,7 @@ class TimeTrackerTable extends Component {
         <h2>{this.state.nameOfMonth}</h2>
         <ArrowRightIcon onClick={this.nextMonth}/>
       </div>
+        <div className='days-name'>{nameOfDays}</div>
         <div>{rows}</div>
       </Card>
     );
