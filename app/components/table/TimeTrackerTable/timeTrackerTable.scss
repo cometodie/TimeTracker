@@ -3,6 +3,9 @@
   display: flex;
   flex-flow: column;
   align-items: center;
+  h2{
+    margin: 0 0 15px;
+  }
   .header {
     display: flex;
     justify-content: space-between;

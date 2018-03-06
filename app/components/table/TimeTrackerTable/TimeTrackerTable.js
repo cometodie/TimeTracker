@@ -24,7 +24,7 @@ class TimeTrackerTable extends Component {
     this.prevMonth = this.prevMonth.bind(this);
     this.state = {
       month: [],
-      nameOfMonth: "",
+      nameOfMonth: ""
     };
   }
 
@@ -63,17 +63,18 @@ class TimeTrackerTable extends Component {
         />
       );
     }
-    const nameOfDays = date.daysNames.map( (el, i) => {
-      return <div key={i}>{el}</div>
-    })
+    const nameOfDays = date.daysNames.map((el, i) => {
+      return <div key={i}>{el}</div>;
+    });
     return (
       <Card className="card min-height">
-      <div className="header">
-        <ArrowLeftIcon onClick={this.prevMonth}/>
-        <h2>{this.state.nameOfMonth}</h2>
-        <ArrowRightIcon onClick={this.nextMonth}/>
-      </div>
-        <div className='days-name'>{nameOfDays}</div>
+        <h2>{this.props.currentYear}</h2>
+        <div className="header">
+          <ArrowLeftIcon onClick={this.prevMonth} />
+            <h2>{this.state.nameOfMonth}</h2>
+          <ArrowRightIcon onClick={this.nextMonth} />
+        </div>
+        <div className="days-name">{nameOfDays}</div>
         <div>{rows}</div>
       </Card>
     );

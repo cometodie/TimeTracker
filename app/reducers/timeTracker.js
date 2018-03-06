@@ -1,4 +1,4 @@
-import { TIME_CLEAR, TIME_SET, SET_MONTH, SET_YEAR } from "../../constants/timeTracker";
+import { TIME_CLEAR, TIME_SET, SET_MONTH, SET_YEAR, PREV_YEAR, NEXT_YEAR } from "../../constants/timeTracker";
 
 const INITIAL_TIME_STATE = {
   userTime: [{ date: "03-01-2018", time: 8 }]
@@ -44,6 +44,14 @@ export const yearReducer = (state = INITIAL_YEAR_STATE, action) => {
     case SET_YEAR: {
       let newState = Object.assign({}, state);
       newState = action.payload;
+      return newState;
+    }
+    case NEXT_YEAR: {
+      let newState = state + 1;
+      return newState;
+    }
+    case PREV_YEAR: {
+      let newState = state - 1;
       return newState;
     }
     default:
