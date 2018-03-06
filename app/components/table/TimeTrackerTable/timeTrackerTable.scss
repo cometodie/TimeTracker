@@ -32,7 +32,9 @@
   justify-content: space-around;
   margin: 15px 0 0 55px;
   div {
-    margin: 0 15px;
+    @media screen and (min-width: 550px) {
+      margin: 0 15px;
+    }
     font-weight: bold;
   }
   div:nth-of-type(6), div:nth-of-type(7){
