@@ -20,7 +20,6 @@ require("./timeTrackerTable.scss");
 class TimeTrackerTable extends Component {
   constructor(props) {
     super(props);
-    console.log(date.daysNames);
     this.nextMonth = this.nextMonth.bind(this);
     this.prevMonth = this.prevMonth.bind(this);
     this.state = {

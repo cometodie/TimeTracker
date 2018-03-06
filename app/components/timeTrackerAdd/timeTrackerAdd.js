@@ -24,7 +24,6 @@ class TimeTrackerAdd extends Component {
     super(props);
     this.back = this.back.bind(this);
     this.addTime = this.addTime.bind(this);
-    this.prepareDate = this.prepareDate.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       timeStore: [],
@@ -35,7 +34,7 @@ class TimeTrackerAdd extends Component {
 
   handleChange(event, date) {
     this.setState({
-      date: this.prepareDate(date)
+      date: TimeTrackerAdd.prepareDate(date)
     });
   }
 
@@ -43,7 +42,7 @@ class TimeTrackerAdd extends Component {
     this.props.history.push(routes.HOME);
   }
 
-  prepareDate(date) {
+  static prepareDate(date) {
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   }
 
