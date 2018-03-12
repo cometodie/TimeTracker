@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import TypeField from "../typeField/TypeField";
-import RaisedButton from "material-ui/RaisedButton";
+import React, { Component } from 'react';
+import TypeField from '../typeField/TypeField';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { SignUpLink } from "./SignUp";
-import { auth } from "../../../config/firebase";
-import * as routes from "../../../constants/routes";
-import { setSnackBar } from "../../actions/utilities";
-require("./auth.scss");
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { SignUpLink } from './SignUp';
+import { auth } from '../../../config/firebase';
+import * as routes from '../../../constants/routes';
+import { setSnackBar } from '../../actions/utilities';
+require('./auth.scss');
 
 const SignInPage = ({ history, setSnackBar }) => (
   <div className="container">
@@ -25,8 +25,8 @@ class SignInForm extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       error: null
     };
   }
@@ -58,24 +58,12 @@ class SignInForm extends Component {
 
   render() {
     const { email, password, error } = this.state;
-    const isInvalid = password === "" || email === "";
+    const isInvalid = password === '' || email === '';
 
     return (
       <form onSubmit={this.onSubmit}>
-        <TypeField
-          value={email}
-          ref="emailField"
-          type="email"
-          name="EmailAddress"
-          placeholder="Email Address"
-        />
-        <TypeField
-          value={password}
-          ref="passwdField"
-          type="password"
-          name="Password"
-          placeholder="Password"
-        />
+        <TypeField value={email} ref="emailField" type="email" name="EmailAddress" placeholder="Email Address" />
+        <TypeField value={password} ref="passwdField" type="password" name="Password" placeholder="Password" />
         <RaisedButton type="submit" className="submit-button" label="Sign In" />
       </form>
     );
@@ -83,6 +71,5 @@ class SignInForm extends Component {
 }
 
 export default SignInPage;
-
 
 export { SignInForm };

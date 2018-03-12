@@ -1,4 +1,4 @@
-import { TIME_SET, TIME_CLEAR, SET_MONTH, NEXT_YEAR, PREV_YEAR } from "../../constants/timeTracker";
+import { TIME_SET, TIME_CLEAR, SET_MONTH, NEXT_YEAR, PREV_YEAR } from '../../constants/timeTracker';
 
 export const clearTimeStore = () => {
   return {

@@ -1,4 +1,4 @@
-import { AUTH_USER_SET } from "../../constants/session";
+import { AUTH_USER_SET } from '../../constants/session';
 
 const INITIAL_STATE = {
   authUser: null

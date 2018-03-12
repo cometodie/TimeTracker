@@ -1,4 +1,4 @@
-import { TOGGLE_LOADING, TOGGLE_SIDEBAR, SET_SNACKBAR } from "../../constants/utilities";
+import { TOGGLE_LOADING, TOGGLE_SIDEBAR, SET_SNACKBAR } from '../../constants/utilities';
 
 export const setLoading = status => {
   return {

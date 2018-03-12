@@ -1,5 +1,5 @@
-import NotFoundPage from "../components/utilities/notFoundPage/NotFoundPage";
-import { connect } from "react-redux";
+import NotFoundPage from '../components/utilities/notFoundPage/NotFoundPage';
+import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
   return {

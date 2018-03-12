@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import TypeField from "../typeField/TypeField";
-import RaisedButton from "material-ui/RaisedButton";
-import * as routes from "../../../constants/routes";
-import { Link, withRouter } from "react-router-dom";
-import { auth } from "../../../config/firebase";
-require("./auth.scss");
+import React, { Component } from 'react';
+import TypeField from '../typeField/TypeField';
+import RaisedButton from 'material-ui/RaisedButton';
+import * as routes from '../../../constants/routes';
+import { Link, withRouter } from 'react-router-dom';
+import { auth } from '../../../config/firebase';
+require('./auth.scss');
 
 const SignUpPage = ({ history }) => (
   <div className="container">
@@ -26,10 +26,10 @@ class SignUpForm extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
-      username: "",
-      email: "",
-      passwordOne: "",
-      passwordTwo: "",
+      username: '',
+      email: '',
+      passwordOne: '',
+      passwordTwo: '',
       error: null
     };
   }

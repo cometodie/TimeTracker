@@ -1,10 +1,10 @@
-import withAuthorization from "../components/sessions/withAuthorization";
+import withAuthorization from '../components/sessions/withAuthorization';
 
-import { connect } from "react-redux";
-import { compose } from "recompose";
-import { setTimeTrackerData, setMonth } from "../actions/timeActions";
-import { setLoading } from "../actions/utilities";
-import Home from "../components/home/Home";
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+import { setTimeTrackerData, setMonth } from '../actions/timeActions';
+import { setLoading } from '../actions/utilities';
+import Home from '../components/home/Home';
 
 const mapStateToProps = state => {
   return {
@@ -28,7 +28,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default compose(
-  withAuthorization(authCondition),
-  connect(mapStateToProps, mapDispatchToProps)
-)(Home);
+export default compose(withAuthorization(authCondition), connect(mapStateToProps, mapDispatchToProps))(Home);
