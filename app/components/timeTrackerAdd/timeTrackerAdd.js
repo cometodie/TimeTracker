@@ -8,7 +8,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import * as dbApi from 'dbApi/TimeTrackerApi';
 import * as routes from 'constants/routes';
 import DatePicker from 'material-ui/DatePicker';
-import TypeField from 'typeField/TypeField';
+import TypeField from 'components/typeField/TypeField';
 
 import { withRouter } from 'react-router-dom';
 import { db } from 'config/firebase';
