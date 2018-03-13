@@ -1,5 +1,5 @@
 .card {
-  margin: 15px auto;
+  margin: 0 auto 15px;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -14,7 +14,7 @@
     }
     h2 {
       text-align: center;
-      margin: 0 0 15px;
+      margin: 0 0 5px;
     }
   }
 }
@@ -26,7 +26,7 @@
 }
 
 .min-height {
-  min-height: 470px;
+  min-height: 505px;
 }
 
 .days-name {
