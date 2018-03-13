@@ -1,10 +1,10 @@
-import TimeTrackerAdd from '../components/timeTrackerAdd/timeTrackerAdd';
-import withAuthorization from '../components/sessions/withAuthorization';
+import TimeTrackerAdd from 'components/timeTrackerAdd/timeTrackerAdd';
+import withAuthorization from 'sessions/withAuthorization';
 
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { setTimeTrackerData } from '../actions/timeActions';
-import { setSnackBar, setLoading } from '../actions/utilities';
+import { setTimeTrackerData } from 'actions/timeActions';
+import { setSnackBar, setLoading } from 'actions/utilities';
 
 const mapStateToProps = state => {
   return {

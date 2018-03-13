@@ -1,10 +1,10 @@
-import withAuthorization from '../components/sessions/withAuthorization';
+import withAuthorization from 'sessions/withAuthorization';
 
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { setTimeTrackerData, setMonth } from '../actions/timeActions';
-import { setLoading } from '../actions/utilities';
-import Home from '../components/home/Home';
+import { setTimeTrackerData, setMonth } from 'actions/timeActions';
+import { setLoading } from 'actions/utilities';
+import Home from 'components/home/Home';
 
 const mapStateToProps = state => {
   return {

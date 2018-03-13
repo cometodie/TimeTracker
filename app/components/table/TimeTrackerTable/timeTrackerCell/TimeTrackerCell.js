@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-require("./timeTrackerCell.scss");
+import React, { Component } from 'react';
+require('./timeTrackerCell.scss');
 
 class TimeTrackerCell extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class TimeTrackerCell extends Component {
       reported: null,
       isBig: false,
       isNormal: false,
-      isDefault: false,
+      isDefault: false
     };
   }
 
@@ -56,20 +56,20 @@ class TimeTrackerCell extends Component {
 
   render() {
     const cellStyle = this.props.active ? '' : 'disabled';
-    let cellTimeStyle = "transparent";
+    let cellTimeStyle = 'transparent';
     if (this.state.isBig) {
-      cellTimeStyle = "isBig";
+      cellTimeStyle = 'isBig';
     }
     if (this.state.isNormal) {
-      cellTimeStyle = "isNormal";
+      cellTimeStyle = 'isNormal';
     }
     if (this.state.isDefault) {
-      cellTimeStyle = "isDefault";
+      cellTimeStyle = 'isDefault';
     }
     return (
       <div className={'cell ' + cellStyle}>
         <div>{this.props.day}</div>
-        <span className={cellTimeStyle} >{this.props.time}</span>
+        <span className={cellTimeStyle}>{this.props.time}</span>
       </div>
     );
   }

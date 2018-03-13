@@ -1,12 +1,12 @@
 import React from 'react';
-import * as routes from '../../../constants/routes';
+import * as routes from 'constants/routes';
 
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
-import { auth } from '../../../config/firebase';
+import { auth } from 'config/firebase';
 
-const withAuthorization = (condition) => (Component) => {
+const withAuthorization = condition => Component => {
   class WithAuthorization extends React.Component {
     componentDidMount() {
       auth.onAuthStateChanged(authUser => {
@@ -21,14 +21,11 @@ const withAuthorization = (condition) => (Component) => {
     }
   }
 
-  const mapStateToProps = (state) => ({
-    authUser: state.sessionState.authUser,
+  const mapStateToProps = state => ({
+    authUser: state.sessionState.authUser
   });
 
-  return compose(
-    withRouter,
-    connect(mapStateToProps),
-  )(WithAuthorization);
-}
+  return compose(withRouter, connect(mapStateToProps))(WithAuthorization);
+};
 
 export default withAuthorization;

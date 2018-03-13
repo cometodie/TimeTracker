@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import TextField from "material-ui/TextField";
+import React, { Component } from 'react';
+import TextField from 'material-ui/TextField';
 
 class TypeField extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class TypeField extends Component {
     this.setState({ value: val, valid: isValid });
   }
   render() {
-    var color = this.state.valid === true ? "green" : "red";
+    var color = this.state.valid === true ? 'green' : 'red';
     return (
       <TextField
         style={{ borderColor: color }}

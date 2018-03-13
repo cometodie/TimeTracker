@@ -1,4 +1,4 @@
-import { TIME_CLEAR, TIME_SET, SET_MONTH, SET_YEAR, PREV_YEAR, NEXT_YEAR } from '../../constants/timeTracker';
+import { TIME_CLEAR, TIME_SET, SET_MONTH, SET_YEAR, PREV_YEAR, NEXT_YEAR } from 'constants/timeTracker';
 
 const INITIAL_TIME_STATE = {
   userTime: [{ date: '03-01-2018', time: 8 }]

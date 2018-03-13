@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import TypeField from '../typeField/TypeField';
+import TypeField from 'components/typeField/TypeField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { SignUpLink } from './SignUp';
-import { auth } from '../../../config/firebase';
-import * as routes from '../../../constants/routes';
-import { setSnackBar } from '../../actions/utilities';
+import { auth } from 'config/firebase';
+import * as routes from 'constants/routes';
+import { setSnackBar } from 'actions/utilities';
 require('./auth.scss');
 
 const SignInPage = ({ history, setSnackBar }) => (

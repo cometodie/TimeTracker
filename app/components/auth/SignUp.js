@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import TypeField from '../typeField/TypeField';
+import TypeField from 'components/typeField/TypeField';
 import RaisedButton from 'material-ui/RaisedButton';
-import * as routes from '../../../constants/routes';
+import * as routes from 'constants/routes';
 import { Link, withRouter } from 'react-router-dom';
-import { auth } from '../../../config/firebase';
+import { auth } from 'config/firebase';
 require('./auth.scss');
 
 const SignUpPage = ({ history }) => (

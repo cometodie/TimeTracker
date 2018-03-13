@@ -1,19 +1,19 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import Nav from './components/nav/Nav';
-import SideBar from './components/utilities/sideBar/SideBar';
-import Loader from './components/utilities/preLoader/Loader';
-import * as routes from '../constants/routes';
-import SignUpPage from './components/auth/SignUp';
-import SignInForm from './components/auth/SignIn';
-import withAuthentication from './components/sessions/withAuthentication';
-import HomeContainer from './containers/HomeContainer';
-import SnackBar from './components/utilities/snackBar/SnackBar';
-import TimeTrackerAddContainer from './containers/TimeTrackerAddContainer';
+import Nav from 'components/nav/Nav';
+import SideBar from 'utilities/sideBar/SideBar';
+import Loader from 'utilities/preLoader/Loader';
+import * as routes from 'constants/routes';
+import SignUpPage from 'components/auth/SignUp';
+import SignInForm from 'components/auth/SignIn';
+import withAuthentication from 'sessions/withAuthentication';
+import HomeContainer from 'containers/HomeContainer';
+import SnackBar from 'utilities/snackBar/SnackBar';
+import TimeTrackerAddContainer from 'containers/TimeTrackerAddContainer';
 
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import SignInContainer from './containers/SignInContainer';
-import NotFoundCountainer from './containers/NotFoundCountainer';
+import SignInContainer from 'containers/SignInContainer';
+import NotFoundCountainer from 'containers/NotFoundCountainer';
 
 require('./app.scss');
 

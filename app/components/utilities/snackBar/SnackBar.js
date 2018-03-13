@@ -1,20 +1,19 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
 import RaisedButton from 'material-ui/RaisedButton';
-import { connect } from "react-redux";
-import { setSnackBar } from '../../../actions/utilities';
+import { connect } from 'react-redux';
+import { setSnackBar } from 'actions/utilities';
 
 class SnackBar extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      open: false
     };
     this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
-  componentWillReceiveProps(props){
+  componentWillReceiveProps(props) {
     this.setState({
       open: props.textSnack.length > 0
     });
@@ -22,10 +21,10 @@ class SnackBar extends React.Component {
 
   handleRequestClose() {
     this.setState({
-      open: false,
+      open: false
     });
     this.props.setSnackBar('');
-  };
+  }
 
   render() {
     return (
@@ -52,7 +51,7 @@ export default connect(
     return {
       setSnackBar: state => {
         dispatch(setSnackBar(state));
-      },
+      }
     };
   }
 )(SnackBar);

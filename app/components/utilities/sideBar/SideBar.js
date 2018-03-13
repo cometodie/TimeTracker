@@ -1,14 +1,14 @@
-import React from "react";
-import Paper from "material-ui/Paper";
-import NavigationAuth from "./NavigationAuth";
-import NavigationNonAuth from "./NavigationNonAuth";
+import React from 'react';
+import Paper from 'material-ui/Paper';
+import NavigationAuth from './NavigationAuth';
+import NavigationNonAuth from './NavigationNonAuth';
 
-import { connect } from "react-redux";
-import { toggleSidebar } from "../../../actions/utilities";
-import { setAuthUser } from "../../../actions/sessionActions";
-import { auth } from "../../../../config/firebase";
-import { clearTimeStore } from "../../../actions/timeActions";
-import { setSnackBar } from '../../../actions/utilities';
+import { connect } from 'react-redux';
+import { toggleSidebar } from 'actions/utilities';
+import { setAuthUser } from 'actions/sessionActions';
+import { auth } from 'config/firebase';
+import { clearTimeStore } from 'actions/timeActions';
+import { setSnackBar } from 'actions/utilities';
 
 class SideBar extends React.Component {
   constructor(props) {
@@ -17,21 +17,21 @@ class SideBar extends React.Component {
     this.logout = this.logout.bind(this);
     this.state = {
       stylePaper: {
-        display: "inline-block",
-        margin: "0 32px 16px 0",
-        position: "fixed",
-        width: "336px",
-        height: "100%",
+        display: 'inline-block',
+        margin: '0 32px 16px 0',
+        position: 'fixed',
+        width: '336px',
+        height: '100%',
         left: 0,
-        transform: "translateX(-336px)",
-        zIndex: "1101",
-        borderRight: "1px solid #fff"
+        transform: 'translateX(-336px)',
+        zIndex: '1101',
+        borderRight: '1px solid #fff'
       },
       styleWrapper: {
-        zIndex: "1100",
-        width: "100%",
-        position: "absolute",
-        height: "calc(100% - 64px)"
+        zIndex: '1100',
+        width: '100%',
+        position: 'absolute',
+        height: 'calc(100% - 64px)'
       }
     };
   }
@@ -47,9 +47,7 @@ class SideBar extends React.Component {
   }
 
   render() {
-    this.state.stylePaper.transform = this.props.isOpen
-      ? "translateX(0)"
-      : "translateX(-336px)";
+    this.state.stylePaper.transform = this.props.isOpen ? 'translateX(0)' : 'translateX(-336px)';
     return (
       <div>
         <div
@@ -58,11 +56,7 @@ class SideBar extends React.Component {
         />
         <Paper style={this.state.stylePaper}>
           {this.props.authUser ? (
-            <NavigationAuth
-              logout={this.logout}
-              email={this.props.authUser.email}
-              onItemClick={this.openSideBar}
-            />
+            <NavigationAuth logout={this.logout} email={this.props.authUser.email} onItemClick={this.openSideBar} />
           ) : (
             <NavigationNonAuth onItemClick={this.openSideBar} />
           )}

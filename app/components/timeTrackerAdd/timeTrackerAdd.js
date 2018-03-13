@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import IconButton from "material-ui/IconButton";
-import Checkbox from "material-ui/Checkbox";
-import ActionFavorite from "material-ui/svg-icons/action/favorite";
-import ActionFavoriteBorder from "material-ui/svg-icons/action/favorite-border";
-import NavigationClose from "material-ui/svg-icons/navigation/close";
-import * as dbApi from "../../dbApi/TimeTrackerApi";
-import * as routes from "../../../constants/routes";
-import DatePicker from "material-ui/DatePicker";
-import TypeField from "../typeField/TypeField";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import IconButton from 'material-ui/IconButton';
+import Checkbox from 'material-ui/Checkbox';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import * as dbApi from 'dbApi/TimeTrackerApi';
+import * as routes from 'constants/routes';
+import DatePicker from 'material-ui/DatePicker';
+import TypeField from 'typeField/TypeField';
 
-import { withRouter } from "react-router-dom";
-import { db } from "../../../config/firebase";
-import { connect } from "react-redux";
-import { List, ListItem } from "material-ui/List";
-import { Card, CardHeader } from "material-ui/Card";
-import { RaisedButton } from "material-ui";
+import { withRouter } from 'react-router-dom';
+import { db } from 'config/firebase';
+import { connect } from 'react-redux';
+import { List, ListItem } from 'material-ui/List';
+import { Card, CardHeader } from 'material-ui/Card';
+import { RaisedButton } from 'material-ui';
 
-require("./timeTracker.scss");
+require('./timeTracker.scss');
 
 class TimeTrackerAdd extends Component {
   constructor(props) {
@@ -69,7 +69,7 @@ class TimeTrackerAdd extends Component {
             : dbApi.doCreateTime(this.props.authUser.uid, this.state.date, this.state.time);
 
           this.props.setLoading(false);
-          this.props.setSnackBar("Your time successfuly reported!");
+          this.props.setSnackBar('Your time successfuly reported!');
           this.props.history.push(routes.HOME);
         }
       );

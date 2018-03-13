@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-require("./Loader.scss");
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+require('./Loader.scss');
 
 class Loader extends Component {
   constructor(props) {

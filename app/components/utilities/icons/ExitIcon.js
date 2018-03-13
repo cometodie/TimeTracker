@@ -1,5 +1,5 @@
-import React from "react";
-import SvgIcon from "material-ui/SvgIcon";
+import React from 'react';
+import SvgIcon from 'material-ui/SvgIcon';
 
 export const ExitIcon = props => (
   <SvgIcon {...props}>

@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import IconButton from "material-ui/IconButton";
-import Checkbox from "material-ui/Checkbox";
-import ActionFavorite from "material-ui/svg-icons/action/favorite";
-import ActionFavoriteBorder from "material-ui/svg-icons/action/favorite-border";
-import NavigationClose from "material-ui/svg-icons/navigation/close";
-import * as date from "../../../../constants/date";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import IconButton from 'material-ui/IconButton';
+import Checkbox from 'material-ui/Checkbox';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import * as date from 'constants/date';
 
-import { db } from "../../../../config/firebase";
-import { connect } from "react-redux";
-import { List, ListItem } from "material-ui/List";
-import { Card, CardHeader } from "material-ui/Card";
-import { ArrowLeftIcon } from "../../utilities/icons/ArrowLeftIcon";
-import { ArrowRightIcon } from "../../utilities/icons/ArrowRightIcon";
-import { getMonthArray, getUserMonths } from "../../../helpers/monthLogic";
-import TimeTrackerRow from "./timeTrackerRow/TimeTrackerRow";
-require("./timeTrackerTable.scss");
+import { db } from 'config/firebase';
+import { connect } from 'react-redux';
+import { List, ListItem } from 'material-ui/List';
+import { Card, CardHeader } from 'material-ui/Card';
+import { ArrowLeftIcon } from 'utilities/icons/ArrowLeftIcon';
+import { ArrowRightIcon } from 'utilities/icons/ArrowRightIcon';
+import { getMonthArray, getUserMonths } from 'helpers/monthLogic';
+import TimeTrackerRow from './timeTrackerRow/TimeTrackerRow';
+require('./timeTrackerTable.scss');
 
 class TimeTrackerTable extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class TimeTrackerTable extends Component {
     this.prevMonth = this.prevMonth.bind(this);
     this.state = {
       month: [],
-      nameOfMonth: ""
+      nameOfMonth: ''
     };
   }
 
@@ -71,7 +71,7 @@ class TimeTrackerTable extends Component {
         <h2>{this.props.currentYear}</h2>
         <div className="header">
           <ArrowLeftIcon onClick={this.prevMonth} />
-            <h2>{this.state.nameOfMonth}</h2>
+          <h2>{this.state.nameOfMonth}</h2>
           <ArrowRightIcon onClick={this.nextMonth} />
         </div>
         <div className="days-name">{nameOfDays}</div>

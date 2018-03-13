@@ -1,4 +1,4 @@
-import { TOGGLE_SIDEBAR } from '../../constants/utilities';
+import { TOGGLE_SIDEBAR } from 'constants/utilities';
 
 const sidebar = (state = false, action) => {
   if (action.type === TOGGLE_SIDEBAR) {
