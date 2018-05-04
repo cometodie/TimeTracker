@@ -8,14 +8,12 @@ class TimeTrackerRow extends Component {
     super(props);
     this.state = {
       days: [],
-      timeStore: []
     };
   }
 
   componentWillMount() {
     this.setState({
       days: this.props.days,
-      timeStore: this.props.timeStore,
       currentMonth: this.props.currentMonth,
       currentYear: this.props.currentYear
     });
@@ -24,7 +22,6 @@ class TimeTrackerRow extends Component {
   componentWillReceiveProps(nProps) {
     this.setState({
       days: nProps.days,
-      timeStore: nProps.timeStore,
       currentMonth: nProps.currentMonth,
       currentYear: nProps.currentYear
     });
@@ -32,7 +29,7 @@ class TimeTrackerRow extends Component {
 
   render() {
     const row = this.props.days.map((el, i) => {
-      return <TimeTrackerCell {...this.props} day={el.day} time={el.time} active={el.activeMount} key={i} />;
+      return <TimeTrackerCell day={el.day} time={el.time} active={el.activeMount} key={i} />;
     });
     return (
       <div className="flex-row">

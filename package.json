@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "metanit.com",
   "scripts": {
-    "dev": "webpack-dev-server --hot --open --progress --colors --inline",
+    "dev": "webpack-dev-server --port=8000 --hot --open --progress --colors --inline",
     "build": "webpack"
   },
   "dependencies": {

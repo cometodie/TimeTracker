@@ -4,10 +4,10 @@ require('./timeTrackerCell.scss');
 class TimeTrackerCell extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.udpateCell = this.udpateCell.bind(this);
     this.state = {
       time: null,
-      reported: null,
       isBig: false,
       isNormal: false,
       isDefault: false

@@ -37,6 +37,9 @@ class TimeTrackerTable extends Component {
         rows: Math.floor(month.length / 7) + (month.length % 7 ? 1 : 0),
         nameOfMonth: date.monthNames[props.currentMonth - 1]
       };
+    }, ()=>{
+      // console.log('state:', this.state);
+      // console.log('props', this.props);
     });
   }
 
